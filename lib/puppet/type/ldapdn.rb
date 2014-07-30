@@ -1,18 +1,6 @@
 Puppet::Type.newtype(:ldapdn) do
 
-  ensurable do
-
-    newvalue(:present) do
-      provider.create
-    end
-
-    newvalue(:absent) do
-      provider.destroy
-    end
-
-    defaultto :present
-
-  end
+  ensurable
 
   @doc = <<-EOS
     This type provides the capability to manage LDAP DN entries.

@@ -25,12 +25,16 @@ Puppet::Type.type(:ldapdn).provide :ldapdn do
 
     if @work_to_do.empty?
       Puppet.debug("Work to do is empty, ensure value is: #{resource[:ensure]}")
-      true if resource[:ensure] == :present
-      false if resource[:ensure] == :absent
+      if resource[:ensure] == :present
+        Puppet.debug("ensure value :present is true")
+      end
+      resource[:ensure] == :present
     else
       Puppet.debug("Work to do is not empty, ensure value is: #{resource[:ensure]}")
-      false if resource[:ensure] == :present
-      true if resource[:ensure] == :absent
+      if resource[:ensure] == :absent
+        Puppet.debug("ensure value :absent is true")
+      end
+      resource[:ensure] == :absent
     end
 
   end
